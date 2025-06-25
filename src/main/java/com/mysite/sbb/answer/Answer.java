@@ -1,4 +1,8 @@
-package com.mysite.sbb;
+package com.mysite.sbb.answer;
+
+import java.time.LocalDateTime;
+
+import com.mysite.sbb.question.Question;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +25,7 @@ public class Answer {
 	@Column(columnDefinition = "TEXT")
 	private String content;
 
-	private String createDate;
+	private LocalDateTime createDate;
 
 	@ManyToOne
 	private Question question;

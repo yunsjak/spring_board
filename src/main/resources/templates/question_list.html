@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성일자</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="question : ${questionlist}">
+				<td th:text="${question.subject}"></td>
+				<td th:text="${question.createDate}"></td>
+				
+				<!-- <td>[[${question.subject}]]</td>
+				<td>[[${question.createDate}]]</td> -->
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

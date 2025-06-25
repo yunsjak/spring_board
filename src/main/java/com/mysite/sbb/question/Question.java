@@ -1,6 +1,9 @@
-package com.mysite.sbb;
+package com.mysite.sbb.question;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import com.mysite.sbb.answer.Answer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,7 +31,7 @@ public class Question {
 	private String content;
 
 //	createDate -> Table 매핑 시 이름 : create_date 표시
-	private String createDate;
+	private LocalDateTime createDate;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;

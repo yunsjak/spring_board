@@ -13,4 +13,9 @@ public class MainController {
 //		System.out.println("index");
 		return "sbb 프로젝트 시작해보자!"; // "index" --> 템플릿 파일
 	}
+
+	@GetMapping("/")
+	public String root() {
+		return "redirect:/question/list";
+	}
 }
