@@ -51,7 +51,7 @@ class SbbApplicationTests {
 
 		// findById(), Optional --> null 값을 유연하게 처리하기 위한 클래스, isPresent()로 값이 존재하는지 확인
 		// --> True 값을 받음
-		// 만약 값이 없으면 False 값 이 리턴됩니다
+		// 만약 값이 없으면 False 값이 리턴됩니다
 //		Optional<Question> op = this.questionRepository.findById(1);
 //		if (op.isPresent()) {
 //			Question q = op.get();

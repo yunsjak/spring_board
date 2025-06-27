@@ -22,8 +22,8 @@ public class QuestionController {
 	// 질문 목록
 	@GetMapping("/list")
 	public String list(Model model) {
-		List<Question> ql = this.questionService.getList();
-		model.addAttribute("questionlist", ql);
+		List<Question> questionlist = this.questionService.getList();
+		model.addAttribute("questionList", questionlist);
 		return "question_list";
 	}
 
