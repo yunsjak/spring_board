@@ -9,13 +9,12 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
-
-import jakarta.transaction.Transactional;
 
 @SpringBootTest
 class SbbApplicationTests {
@@ -33,7 +32,7 @@ class SbbApplicationTests {
 		// 질문 저장하기
 //		Question q1 = new Question();
 //		q1.setSubject("sbb가 도대체 무엇인가요?");
-//		q1.setContent("sbb를 통해서 스프링부트 프로젝트를 공부하는거로 알고 있습니다. 좀더 알고 싶어요?");
+//		q1.setContent("sbb를 통해서 스프링부트 프로젝트를 공부하는 걸로 알고 있습니다. 좀 더 알고 싶어요?");
 //		q1.setCreateDate(LocalDateTime.now());
 //		this.questionRepository.save(q1); // 첫번째 질문 저장
 //
