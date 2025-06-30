@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+<!-- Thymeleaf 의 layout:decorate 속성 -> Template 의 레이아웃(부모 Template, 여기서는 layout.html 설정) -->
 <html  layout:decorate="~{layout}">
 <head>
 	<meta charset="UTF-8" />
 	<title>목록 페이지</title>
 </head>
 <body>
+<!-- Thymeleaf 의 layout:fragment="content" 속성 -> 부모 Template 의 요소를 자식에게 상속 -->
 	<div layout:fragment="content" class="container my-3">
 	    <table class="table">
 	        <thead class="table-dark">
@@ -15,15 +17,18 @@
 	            </tr>
 	        </thead>
 	        <tbody>
+	        <!-- 번호는 loop.count를 사용하여 표시 : 자바 객체의 id 가 아님, 단순 번호 -->
 	            <tr th:each="question, loop : ${questionList}">
 	                <td th:text="${loop.count}"></td>
 	                <td>
 	                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
 	                </td>
+	                <!-- Thymeleaf #temporals.format(날짜 객체, 날짜 포맷 형식) -->
 	                <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
 	            </tr>
 	        </tbody>
 	    </table>
+		<a th:href="@{/question/create}" class="btn btn-success">질문 등록</a>
 	</div>
 </body>
 </html>
