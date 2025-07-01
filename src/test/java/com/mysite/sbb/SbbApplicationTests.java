@@ -1,20 +1,12 @@
 package com.mysite.sbb;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.List;
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
-import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.question.QuestionService;
 
 @SpringBootTest
 class SbbApplicationTests {
@@ -25,8 +17,11 @@ class SbbApplicationTests {
 	@Autowired
 	private AnswerRepository answerRepository;
 
+	@Autowired
+	private QuestionService questionService;
+
 	// test_Jpa() 대하여 DB 세션을 유지시킨다. (모든 DB 작업이 성공해야 커밋되고, 하나라도 실패하면 모두 롤백)
-	@Transactional // 마지막 코드 실행 시 주석 제거
+//	@Transactional // 마지막 코드 실행 시 주석 제거
 	@Test
 	void testJpa() {
 		// 질문 저장하기
@@ -104,14 +99,23 @@ class SbbApplicationTests {
 //		assertEquals(2, a.getQuestion().getId());
 
 		// 답변 데이터를 통해 질문 데이터 찾기 vs '질문 데이터를 통해 답변 데이터 찾기'
-		Optional<Question> op = this.questionRepository.findById(2);
-		assertTrue(op.isPresent());
-		Question q = op.get();
+//		Optional<Question> op = this.questionRepository.findById(2);
+//		assertTrue(op.isPresent());
+//		Question q = op.get();
+//
+//		List<Answer> answerList = q.getAnswerList(); // 여기까지 일반적으로 db 세션이 유지됨. 이후 끈어짐
+//
+//		assertEquals(1, answerList.size());
+//		assertEquals("답변입니다", answerList.get(0).getContent());
 
-		List<Answer> answerList = q.getAnswerList(); // 여기까지 일반적으로 db 세션이 유지됨. 이후 끈어짐
+		// 테스트 데이터 300개 생성
 
-		assertEquals(1, answerList.size());
-		assertEquals("답변입니다", answerList.get(0).getContent());
+		for (int i = 1; i <= 300; i++) {
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
+			this.questionService.create(subject, content);
+		}
+
 	}
 
 }
