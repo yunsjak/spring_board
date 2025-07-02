@@ -19,9 +19,12 @@
 	        <tbody>
 	        <!-- 번호는 loop.count를 사용하여 표시 : 자바 객체의 id 가 아님, 단순 번호 -->
 	            <tr th:each="question, loop : ${paging}">
-	                <td th:text="${loop.count}"></td>
+	                <td th:text="${paging.totalElements - (paging.number * paging.size) - loop.index}"></td>
 	                <td>
 	                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+	                    <span class="text-danger small ms-2"
+	                    th:if="${#lists.size(question.answerList) > 0}"
+	                    th:text="${#lists.size(question.answerList)}"></span>
 	                </td>
 	                <!-- Thymeleaf #temporals.format(날짜 객체, 날짜 포맷 형식) -->
 	                <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
